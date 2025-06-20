@@ -12,13 +12,18 @@ import { ICONS } from './constants/icons';
 
 function App() {
   const [currentTaskId, setCurrentTaskId] = useState(0);
-  const [isHintShown, setHintShown] = useState(false);
   const [inputCodeValue, setInputCodeValue] = useState('');
   const [isCodePadOpen, setCodePadOpen] = useState(false);
   const [isWelcomeOpen, setWelcomeOpen] = useState(true);
   const [isEndingOpen, setEndingOpen] = useState(false);
 
   const { title, description, hint, code, image } = TASK_LIST[currentTaskId];
+
+  useEffect(() => {
+    if (currentTaskId > TASK_LIST.length) {
+      setEndingOpen(true);
+    }
+  }, [currentTaskId]);
 
   const handleCodeInput = (inputCode: string) => {
     if (parseInt(inputCode) === code) {
@@ -33,8 +38,12 @@ function App() {
   };
 
   return (
-    <main className="relative w-full h-full p-4 pt-7">
-      <ModalWindow isOpen={isWelcomeOpen} closeModal={() => setWelcomeOpen(false)}>
+    <main className="relative w-full  p-4 pt-7">
+      <ModalWindow
+        isOpen={isWelcomeOpen}
+        closeModal={() => setWelcomeOpen(false)}
+        confirm
+      >
         <WelcomeScreen />
       </ModalWindow>
 
@@ -42,16 +51,11 @@ function App() {
         <EndingScreen />
       </ModalWindow>
 
-      <ModalWindow isOpen={isCodePadOpen} closeModal={handleCodePadWindow}>
+      <ModalWindow isOpen={isCodePadOpen} closeModal={handleCodePadWindow} decline>
         <CodePad value={inputCodeValue} handleCodeInput={handleCodeInput} />
       </ModalWindow>
 
-      <Task
-        description={description}
-        hint={hint}
-        image={image}
-        isHintShown={isHintShown}
-      />
+      <Task description={description} hint={hint} image={image} />
 
       <div className="fixed right-3 bottom-3 pb-safe-bottom">
         <Button
