@@ -1,7 +1,7 @@
 export const ICONS = {
-  enterCode: './src/assets/icons/pad.svg',
-  hint: './src/assets/icons/bulb.svg',
-  close: './src/assets/icons/close.svg',
-  ok: './src/assets/icons/ok.svg',
-  backspace: './src/assets/icons/backspace.svg'
+  enterCode: 'assets/icons/pad.svg',
+  hint: 'assets/icons/bulb.svg',
+  close: 'assets/icons/close.svg',
+  ok: 'assets/icons/ok.svg',
+  backspace: 'assets/icons/backspace.svg'
 };
