@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
+
 import Task from './components/Task';
-// import CodeInput from './components/CodeInput';
 import CodePad from './components/CodePad';
 import Button from './components/Button';
 import ModalWindow from './components/ModalWindow';
 
 import { TASK_LIST } from './constants/task-list';
 import { ICONS } from './constants/icons';
-
-// import { ITask } from './interfaces/ITask';
 
 function App() {
   const [currentTaskId, setCurrentTaskId] = useState(0);
