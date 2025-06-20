@@ -4,6 +4,8 @@ import Task from './components/Task';
 import CodePad from './components/CodePad';
 import Button from './components/Button';
 import ModalWindow from './components/ModalWindow';
+import WelcomeScreen from './components/WelcomeScreen';
+import EndingScreen from './components/EndingScreen';
 
 import { TASK_LIST } from './constants/task-list';
 import { ICONS } from './constants/icons';
@@ -13,6 +15,8 @@ function App() {
   const [isHintShown, setHintShown] = useState(false);
   const [inputCodeValue, setInputCodeValue] = useState('');
   const [isCodePadOpen, setCodePadOpen] = useState(false);
+  const [isWelcomeOpen, setWelcomeOpen] = useState(true);
+  const [isEndingOpen, setEndingOpen] = useState(false);
 
   const { title, description, hint, code, image } = TASK_LIST[currentTaskId];
 
@@ -30,6 +34,14 @@ function App() {
 
   return (
     <main className="relative w-full h-full p-4 pt-7">
+      <ModalWindow isOpen={isWelcomeOpen} closeModal={() => setWelcomeOpen(false)}>
+        <WelcomeScreen />
+      </ModalWindow>
+
+      <ModalWindow isOpen={isEndingOpen} closeModal={() => setEndingOpen(false)}>
+        <EndingScreen />
+      </ModalWindow>
+
       <ModalWindow isOpen={isCodePadOpen} closeModal={handleCodePadWindow}>
         <CodePad value={inputCodeValue} handleCodeInput={handleCodeInput} />
       </ModalWindow>
