@@ -31,7 +31,7 @@ function App() {
   };
 
   return (
-    <main className="relative w-full h-full p-4">
+    <main className="relative w-full h-full p-4 pt-7">
       <ModalWindow isOpen={isCodePadOpen} closeModal={handleCodePadWindow}>
         <CodePad value={inputCodeValue} handleCodeInput={handleCodeInput} />
       </ModalWindow>
