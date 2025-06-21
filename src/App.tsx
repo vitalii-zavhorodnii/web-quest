@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 import Task from './components/Task';
 import CodePad from './components/CodePad';
@@ -17,18 +17,19 @@ function App() {
   const [isWelcomeOpen, setWelcomeOpen] = useState(true);
   const [isEndingOpen, setEndingOpen] = useState(false);
 
-  const { title, description, hint, code, image } = TASK_LIST[currentTaskId];
-
-  useEffect(() => {
-    if (currentTaskId > TASK_LIST.length) {
-      setEndingOpen(true);
-    }
-  }, [currentTaskId]);
+  const { description, hint, code, image } = TASK_LIST[currentTaskId];
 
   const handleCodeInput = (inputCode: string) => {
     if (parseInt(inputCode) === code) {
       setCodePadOpen(false);
-      setCurrentTaskId((state) => state + 1);
+
+      if (currentTaskId < TASK_LIST.length - 1) {
+        setCurrentTaskId((state) => state + 1);
+      }
+
+      if (currentTaskId === TASK_LIST.length - 1) {
+        setEndingOpen(true);
+      }
     }
   };
 
